@@ -109,7 +109,6 @@ namespace ScoreManager
                 var shortcut = (IWshShortcut)shell.CreateShortcut("rungame.lnk");
                 shortcut.TargetPath = ballancePath + "\\Bin\\Player.exe";
                 shortcut.WorkingDirectory = ballancePath + "\\Bin\\";
-
                 shortcut.Save();
             }
 
@@ -117,7 +116,7 @@ namespace ScoreManager
             {
                 CreateShortCut();
                 Process.Start("rungame.lnk");
-                System.IO.File.Delete(ballancePath + "\\Bin\\rungame.lnk");
+                System.IO.File.Delete("rungame.lnk");
             }
             catch (Exception)
             {
@@ -132,10 +131,12 @@ namespace ScoreManager
             while (true)
             {
                 var result = Console.ReadKey(true);
-                if (result.Key == ConsoleKey.Z) break;
-                Thread.Sleep(500);
+                if (result.Key == ConsoleKey.Z) {
+                    break;
+                } else {
+                    Thread.Sleep(500);
+                }
             }
-
             watcher.EnableRaisingEvents = false;
             t.Destroy();
             watcher.Dispose();
